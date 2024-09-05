@@ -14,14 +14,6 @@ export default function Navbar() {
         router.push('/chatbot');
     };
 
-    const handleSavedCards = () => {
-        router.push('/flashcards');
-    };
-
-    const handleGenerate = () => {
-        router.push('/generate');
-    };
-
     return (
         <AppBar position="absolute" 
             sx={{

@@ -2,6 +2,7 @@
 import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography } from '@mui/material';
 import { useState, useRef, useEffect } from 'react';
 import {franc} from 'franc';
+import Navbar from '../navbar';
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -103,14 +104,8 @@ const handleKeyPress = (event) => {
       justifyContent="center"
       alignItems={'center'}
     >
+<Navbar/>
 
-<AppBar position="fixed" sx={{ backgroundColor: '#96d7c6' }} >
-        <Toolbar style={{ justifyContent: 'center'}}>
-          <Typography variant="h4" sx={{ color: '#6c8cbf', fontFamily: 'Lucida Console, monospace', fontWeight: 'bold'  }} padding={3}>
-            Mental Health Assistant
-          </Typography>
-        </Toolbar>
-      </AppBar>
       <Stack
         direction={'column'}
         width={'500px'}
