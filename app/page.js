@@ -1,11 +1,13 @@
 "use client"
-import { Box, Button, Container, Grid, Typography, Icon} from "@mui/material";
+import { Box, Button, Typography, Icon, IconButton, Link, Grid2, Avatar} from "@mui/material";
 import Head from "next/head";
 import { useRouter } from 'next/navigation'
 import Navbar from './navbar'
 import { useState, useEffect } from 'react';
 import ImageBG from './imageBG'
 import ChatIcon from '@mui/icons-material/Chat';
+import { Facebook, Twitter, Instagram, LinkedIn } from '@mui/icons-material';
+
 
 export default function Home() {
   const router = useRouter()
@@ -18,6 +20,28 @@ export default function Home() {
   const handleChatClick = () => {
     router.push('/chatbot');
 };
+
+//Fake Testomonials
+const testimonials = [
+    {
+      name: "Jane Doe",
+      role: "Healthcare Provider",
+      story: "This chatbot has made it easier to provide accurate health information to patients in remote areas.",
+      image: "https://www.shutterstock.com/image-vector/africanamerican-curly-hair-woman-relaxed-600nw-2390634733.jpg", 
+    },
+    {
+      name: "John Smith",
+      role: "Community Member",
+      story: "I found the chatbot very helpful in understanding symptoms and getting guidance on healthcare.",
+      image: "https://www.shutterstock.com/image-vector/wavy-hair-caucasian-man-relaxed-600nw-2390634819.jpg",
+    },
+    {
+      name: "Amina Khan",
+      role: "Health Advocate",
+      story: "The accessibility of the chatbot has been a game-changer for our community education efforts.",
+      image: "https://static.vecteezy.com/system/resources/previews/034/235/942/non_2x/muslim-woman-pretty-smiling-2d-avatar-illustration-headshot-casual-scarf-hijab-young-adult-lady-cartoon-character-face-portrait-relaxed-pose-flat-color-user-profile-image-isolated-on-white-vector.jpg",
+    },
+  ];
 
   return (
   <>
@@ -91,7 +115,7 @@ export default function Home() {
             >
             <Box
                 sx={{
-                bgcolor: '#849785',
+                background: 'linear-gradient(135deg, #849785 0%, #a8bfa1 50%, #ccd8c2 100%)',
                 width: 'fit-content',
                 height: 'fit-content',
                 padding: '8vh 5vw',
@@ -218,7 +242,75 @@ export default function Home() {
             </Box>
         </Box>
     </Box>
-    {/* Chatbot*/}
+    {/* Testomonials */}
+    <Box sx={{ mb: '10vh', mt: '5vh'}}>
+        <Typography variant="h4" sx={{ marginBottom: '20px', fontWeight: 'bold', textAlign: 'center', color: '#849785' }}>
+          User Stories
+        </Typography>
+        <Grid2 container spacing={4} justifyContent="center">
+          {testimonials.map((testimonial, index) => (
+            <Grid2 item xs={12} md={4} key={index}>
+              <Box
+                sx={{
+                  bgcolor: '#849785', 
+                  borderRadius: '10px',
+                  padding: '20px',
+                  color: 'white', 
+                  height: '100%',
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
+                  <Avatar src={testimonial.image} alt={testimonial.name} sx={{ width: 50, height: 50, marginRight: '10px' }} />
+                  <Box>
+                    <Typography variant="h6" sx={{fontWeight: 400}}>{testimonial.name}</Typography>
+                    <Typography variant="body2">{testimonial.role}</Typography>
+                  </Box>
+                </Box>
+                <Typography variant="body1" sx={{fontWeight: 200}}>{testimonial.story}</Typography>
+              </Box>
+            </Grid2>
+          ))}
+        </Grid2>
+      </Box>
+    {/* footer */}
+    <Box
+        sx={{
+          bgcolor: '#849785',
+          padding: '20px',
+          textAlign: 'center',
+          color: 'white',
+        }}
+      >
+        <Typography variant="h6" sx={{ marginBottom: '2vh', fontWeight: 'bolder'}}>
+          Empowering communities through accessible health information.
+        </Typography>
+        <Box sx={{ marginBottom: '20px' }}>
+          <Link href="" underline="hover" sx={{ color: 'white', margin: '0 10px', fontWeight: 200}}>
+            Privacy Policy
+          </Link>
+          <Link href="" underline="hover" sx={{ color: 'white', margin: '0 10px', fontWeight: 200}}>
+            Terms of Service
+          </Link>
+          <Link href="" underline="hover" sx={{ color: 'white', margin: '0 10px', fontWeight: 200}}>
+            Contact Info
+          </Link>
+        </Box>
+        <Box>
+          <IconButton href="" sx={{ color: 'white' }}>
+            <Facebook />
+          </IconButton>
+          <IconButton href="" sx={{ color: 'white' }}>
+            <Twitter />
+          </IconButton>
+          <IconButton href="" sx={{ color: 'white' }}>
+            <Instagram />
+          </IconButton>
+          <IconButton href="" sx={{ color: 'white' }}>
+            <LinkedIn />
+          </IconButton>
+        </Box>
+      </Box>
+    {/* Sticky Chatbot*/}
     <Box
         sx={{
         position: 'fixed',

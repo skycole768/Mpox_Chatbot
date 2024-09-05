@@ -104,16 +104,13 @@ const handleKeyPress = (event) => {
       justifyContent="center"
       alignItems={'center'}
     >
+<Navbar/>
 
-<AppBar position="fixed" sx={{ backgroundColor: '#849785' }} >
-        <Navbar />
-      </AppBar>
       <Stack
         direction={'column'}
         width={'500px'}
         height={'700px'}
         border={"1px solid black"}
-        borderRadius={"10px"}
         p={2}
         spacing={3}
         mt={13}
@@ -138,10 +135,10 @@ const handleKeyPress = (event) => {
               <Box
                 bgcolor={
                   message.role === 'assistant'
-                    ? '#98A894'
-                    : '#C1C1C1'
+                    ? '#96d7c6'
+                    : '#6c8cbf'
                 }
-                color='#000'
+                color='white'
                 borderRadius={16}
                 p={3}
                 maxWidth={'80%'}
@@ -165,7 +162,7 @@ const handleKeyPress = (event) => {
           />
           <Button 
             variant='contained' 
-            style={{ backgroundColor: '#849785', color: '#fafafa' }} 
+            style={{ backgroundColor: '#96d7c6', color: 'white' }} 
             onClick={sendMessage}
             disabled={isLoading}
             >
