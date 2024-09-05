@@ -14,6 +14,10 @@ export default function Navbar() {
         router.push('/chatbot');
     };
 
+    const handleClinicClick = () => {
+        router.push('/map');
+    };
+
     return (
         <AppBar position="absolute" 
             sx={{
@@ -42,6 +46,11 @@ export default function Navbar() {
                 <Box sx={{float: 'right'}} onClick={handleChatClick}>
                     <Button sx={{color: 'black', mr: '5vw', '&:hover': {color: '#849785', bgcolor: 'transparent'}}}>
                         ChatBot
+                    </Button>
+                </Box>
+                <Box sx={{float: 'right'}} onClick={handleClinicClick}>
+                    <Button sx={{color: 'black', mr: '5vw', '&:hover': {color: '#849785', bgcolor: 'transparent'}}}>
+                        Search Clinics
                     </Button>
                 </Box>
             </Toolbar>
