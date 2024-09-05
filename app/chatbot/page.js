@@ -136,10 +136,10 @@ const handleKeyPress = (event) => {
               <Box
                 bgcolor={
                   message.role === 'assistant'
-                    ? '#849785'
+                    ? '#98A894'
                     : '#C1C1C1'
                 }
-                color='#F5F5F3'
+                color='#28282A'
                 borderRadius={13}
                 p={3}
                 maxWidth={'80%'}
