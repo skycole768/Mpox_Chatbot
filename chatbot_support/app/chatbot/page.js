@@ -2,6 +2,7 @@
 import { Box, Button, Stack, TextField, AppBar, Toolbar, Typography } from '@mui/material';
 import { useState, useRef, useEffect } from 'react';
 import {franc} from 'franc';
+import Navbar from '../navbar';
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -104,18 +105,15 @@ const handleKeyPress = (event) => {
       alignItems={'center'}
     >
 
-<AppBar position="fixed" sx={{ backgroundColor: '#96d7c6' }} >
-        <Toolbar style={{ justifyContent: 'center'}}>
-          <Typography variant="h4" sx={{ color: '#6c8cbf', fontFamily: 'Lucida Console, monospace', fontWeight: 'bold'  }} padding={3}>
-            Mental Health Assistant
-          </Typography>
-        </Toolbar>
+<AppBar position="fixed" sx={{ backgroundColor: '#849785' }} >
+        <Navbar />
       </AppBar>
       <Stack
         direction={'column'}
         width={'500px'}
         height={'700px'}
         border={"1px solid black"}
+        borderRadius={"10px"}
         p={2}
         spacing={3}
         mt={13}
@@ -140,10 +138,10 @@ const handleKeyPress = (event) => {
               <Box
                 bgcolor={
                   message.role === 'assistant'
-                    ? '#96d7c6'
-                    : '#6c8cbf'
+                    ? '#98A894'
+                    : '#C1C1C1'
                 }
-                color='white'
+                color='#000'
                 borderRadius={16}
                 p={3}
                 maxWidth={'80%'}
@@ -167,7 +165,7 @@ const handleKeyPress = (event) => {
           />
           <Button 
             variant='contained' 
-            style={{ backgroundColor: '#96d7c6', color: 'white' }} 
+            style={{ backgroundColor: '#849785', color: '#fafafa' }} 
             onClick={sendMessage}
             disabled={isLoading}
             >
