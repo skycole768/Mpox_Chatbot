@@ -140,6 +140,8 @@ const handleKeyPress = (event) => {
                     : '#C1C1C1'
                 }
                 color='#28282A'
+                letterSpacing={.2}
+                lineHeight={1.5}
                 borderRadius={13}
                 p={3}
                 maxWidth={'80%'}
