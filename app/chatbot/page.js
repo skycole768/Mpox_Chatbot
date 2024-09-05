@@ -111,6 +111,7 @@ const handleKeyPress = (event) => {
         width={'500px'}
         height={'700px'}
         border={"1px solid black"}
+        borderRadius={3}
         p={2}
         spacing={3}
         mt={13}
@@ -135,11 +136,11 @@ const handleKeyPress = (event) => {
               <Box
                 bgcolor={
                   message.role === 'assistant'
-                    ? '#96d7c6'
-                    : '#6c8cbf'
+                    ? '#849785'
+                    : '#C1C1C1'
                 }
-                color='white'
-                borderRadius={16}
+                color='#F5F5F3'
+                borderRadius={13}
                 p={3}
                 maxWidth={'80%'}
               >
@@ -152,7 +153,7 @@ const handleKeyPress = (event) => {
         </Stack>
         <Stack direction={'row'} spacing={2}>
           <TextField
-            label="Message"
+            label="Write Message Here"
             fullWidth
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -162,7 +163,7 @@ const handleKeyPress = (event) => {
           />
           <Button 
             variant='contained' 
-            style={{ backgroundColor: '#96d7c6', color: 'white' }} 
+            style={{ backgroundColor: '#849785', color: '#fafafa' , borderRadius: 5}} 
             onClick={sendMessage}
             disabled={isLoading}
             >
