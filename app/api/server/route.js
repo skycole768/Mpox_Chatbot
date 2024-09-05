@@ -1,28 +1,67 @@
 import { NextResponse } from 'next/server';
 import { Client } from '@googlemaps/google-maps-services-js';
+import axios from 'axios';
 
 const apiKey = process.env.GOOGLE_API_KEY;
 const gmaps = new Client({});
 
-// Ensure the API route handles POST requests
+function isLatLng(location) {
+  const latLngRegex = /^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/;
+  return latLngRegex.test(location.trim());
+}
+
 export async function POST(req) {
   try {
-    const { location, type } = await req.json();  // Parse request body
+    const { location } = await req.json();
+    let businesses = [];
+    let formattedLocation = location;
 
-    // Make the Google Places API request
-    const response = await gmaps.placesNearby({
-      params: {
-        location: location,  // e.g., "37.7749,-122.4194"
-        keyword: type,  // e.g., "restaurant"
-        radius: 100000,  // Radius in meters
-        key: apiKey,
-      },
-    });
+    if (!isLatLng(location)) {
+      console.log("Geocoding the location:", location);
+      
+      const geoResponse = await axios.get(
+        'https://maps.googleapis.com/maps/api/geocode/json',
+        {
+          params: {
+            key: apiKey,
+            address: location, // Location string to geocode
+          },
+        }
+      );
 
-    const businesses = response.data.results;
-    return NextResponse.json({ businesses });  // Return the places as JSON
-  } catch (error) {
-    console.error('Error fetching places:', error);
-    return new NextResponse('Error fetching places', { status: 500 });
+      if (geoResponse.data.status === 'OK') {
+        const { lat, lng } = geoResponse.data.results[0].geometry.location;
+        formattedLocation = `${lat},${lng}`;
+        console.log("Geocoded to lat,lng:", formattedLocation);
+      } else {
+        throw new Error('Geocoding failed');
+      }
+    }
+
+    try {
+      const response = await gmaps.placesNearby({
+        params: {
+          location: formattedLocation,
+          keyword: 'hospital,medical clinic',
+          radius: 200000, 
+          language: 'en', // Language set to English, can adjust based on region
+          region: 'CD',  // Region code for the Democratic Republic of Congo
+          key: apiKey,
+        },
+      });
+
+      console.log("API Response: ", response.data); 
+      businesses = response.data.results;
+
+    } catch (error) {
+      console.log('Places Nearby API error:', error.message);
+      return NextResponse.json({ error: 'Could not fetch places.' }, { status: 500 });
+    }
+
+    return NextResponse.json({ businesses });
+
+  } catch (finalError) {
+    console.error('API error:', finalError.message);
+    return NextResponse.json({ error: 'Failed to process the request' }, { status: 500 });
   }
 }

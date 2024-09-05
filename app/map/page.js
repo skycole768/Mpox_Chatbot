@@ -6,17 +6,17 @@ import { Box, Typography, Button, TextField, Stack } from '@mui/material'; // MU
 
 export default function Map() {
   const [location, setLocation] = useState('');
-  const [type, setType] = useState('');
   const [places, setPlaces] = useState([]);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Recieved")
+    console.log("Form Received");
+
     try {
-      // Send a POST request to the Node.js backend
-      const response = await axios.post('/api/server', { location, type });
-      // Set the list of places returned from the backend
+      console.log("Processing...");
+      const response = await axios.post('/api/server', { location });
+      console.log("Response:", response.data);
       setPlaces(response.data.businesses);
       setError('');
     } catch (err) {
@@ -29,44 +29,35 @@ export default function Map() {
     <Box>
       <Navbar />
       
-      {/* Main container with top padding to avoid overlap */}
       <Box
         sx={{
-          padding: '100px 20px 20px 20px', // Top padding to push content below the navbar
+          padding: '100px 20px 20px 20px', 
           maxWidth: '800px',
           margin: '0 auto',
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Search for Places Nearby
+          Search for Medical Facilities Nearby
         </Typography>
 
-        {/* Form for location and type */}
         <form onSubmit={handleSubmit}>
           <Stack spacing={3}>
             <TextField
-              label="Location"
+              label="Location (e.g., city, address, or lat,lng)"
               variant="outlined"
               fullWidth
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
             />
-            <TextField
-              label="Type of Place"
-              variant="outlined"
-              fullWidth
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              required
-            />
+
             <Button type="submit" variant="contained" color="primary">
               Search
             </Button>
           </Stack>
         </form>
 
-        <label>-3.5256468128598755, 23.59438177046249</label>
+        <Typography> -3.526312446007129, 23.605681766740165 </Typography>
 
         {/* Display error if any */}
         {error && (
@@ -84,6 +75,7 @@ export default function Map() {
             {places.map((place, index) => (
               <li key={index}>
                 <Typography variant="body1">{place.name}</Typography>
+                <Typography variant="body1">{place.vicinity}</Typography>
               </li>
             ))}
           </ul>
