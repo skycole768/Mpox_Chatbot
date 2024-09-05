@@ -5,7 +5,9 @@ import {franc} from 'franc';
 
 export default function Home() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hi, I am a mental health assistant. How can I be of service today?' },
+    { role: 'assistant', content: "Hello! Welcome to the OLEA's Mpox Support Chatbot. " +
+      "I'm here to help you with information about Mpox, including symptoms, outbreaks, treatments, and common misconceptions. " +
+      "How can I assist you today? You can ask me about symptoms, prevention, treatments, or any other questions you might have." },
   ]);
   const [message, setMessage] = useState('');
   const [language, setLanguage] = useState('');
