@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Navbar from '../navbar';
 import axios from 'axios';
-import { Box, Typography, Button, TextField, Stack } from '@mui/material'; // MUI for better styling
+import { Box, Typography, Button, TextField, Stack } from '@mui/material';
 
 export default function Map() {
   const [location, setLocation] = useState('');
@@ -26,17 +26,29 @@ export default function Map() {
   };
 
   return (
-    <Box>
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      margin="0"
+      padding="0"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems={'center'}
+    >
       <Navbar />
-      
-      <Box
-        sx={{
-          padding: '100px 20px 20px 20px', 
-          maxWidth: '800px',
-          margin: '0 auto',
-        }}
+
+      <Stack
+        direction={'column'}
+        width={'500px'}
+        height={'700px'}
+        border={"1px solid black"}
+        borderRadius={3}
+        p={2}
+        spacing={3}
+        mt={13}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" sx={{ color: '#849785', fontFamily: 'Arial', fontWeight: 'bold' }} textAlign="center">
           Search for Medical Facilities Nearby
         </Typography>
 
@@ -49,38 +61,39 @@ export default function Map() {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
+              style={{ borderRadius: '5px' }}
             />
 
-            <Button type="submit" variant="contained" color="primary">
+            <Button 
+              type="submit" 
+              variant="contained" 
+              style={{ backgroundColor: '#849785', color: '#fafafa', borderRadius: '5px' }}
+            >
               Search
             </Button>
           </Stack>
         </form>
 
-        <Typography> -3.526312446007129, 23.605681766740165 </Typography>
-
-        {/* Display error if any */}
         {error && (
           <Typography color="error" variant="body1" sx={{ marginTop: 2 }}>
             {error}
           </Typography>
         )}
 
-        {/* Display found places */}
-        <Typography variant="h5" sx={{ marginTop: 4 }}>
+        <Typography variant="h5" sx={{ marginTop: 4, color: '#849785', fontWeight: 'bold' }}>
           Places Found
         </Typography>
-        <Box>
+        <Box overflow="auto" maxHeight="200px">
           <ul>
             {places.map((place, index) => (
-              <li key={index}>
-                <Typography variant="body1">{place.name}</Typography>
-                <Typography variant="body1">{place.vicinity}</Typography>
+              <li key={index} style={{ listStyleType: 'none', marginBottom: '10px' }}>
+                <Typography variant="body1" sx={{ color: '#849785' }}>{place.name}</Typography>
+                <Typography variant="body2" sx={{ color: '#C1C1C1' }}>{place.vicinity}</Typography>
               </li>
             ))}
           </ul>
         </Box>
-      </Box>
+      </Stack>
     </Box>
   );
 }
