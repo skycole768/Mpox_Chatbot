@@ -208,7 +208,7 @@ const testimonials = [
                     </Typography>
 
                     <Typography sx={{marginBottom: '1.5vh', fontSize: '1.2vw', fontWeight: 300}} color='#849785' align= 'center' variant="body1">
-                    At Olea, we are dedicated to bridging the digital divide in healthcare by providing access to critical health information where it's needed most. Our mission is to connect healthcare professionals with underserved communities, enabling better health outcomes for all.
+                    At Olea, we are dedicated to bridging the digital divide in healthcare by providing access to critical health information where it&apos;s needed most. Our mission is to connect healthcare professionals with underserved communities, enabling better health outcomes for all.
                     </Typography>
 
                     <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '15px' }}>
@@ -232,7 +232,7 @@ const testimonials = [
                         <Typography color='#849785' sx={{fontSize: '1.5vw', fontWeight: 300}} variant="h6">What Our Users Say</Typography>
                     </Box>
                     <Typography  color='#849785' variant="body1" sx={{ marginBottom: '1.5vh', fontSize: '1.2vw', fontWeight: 200}}>
-                        "Olea's chatbot has been a game changer for our clinic. It's an essential tool for reaching our patients." - Dr. Jane Smith
+                    &quot;Olea&apos;s chatbot has been a game changer for our clinic. It&apos;s an essential tool for reaching our patients.&quot; - Dr. Jane Smith
                     </Typography>
 
                     <Typography color='#849785' variant="body1" align="center" sx={{fontSize: '1.2vw', fontWeight: 400}}>
